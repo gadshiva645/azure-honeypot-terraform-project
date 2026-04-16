@@ -1,0 +1,22 @@
+#secret passwords
+*.tfvars
+*.tfvars.json
+terraform.tfvars
+terraform.tfvars.json
+
+#state
+*.tfstate
+*.tfstate.backup
+*tfstate.lock.info
+
+#terraform files
+.terraform/
+.terraform.lock.hcl
+*.exe
+
+#logs
+crash.log
+terraform.log
+
+#notes
+notes.txt
