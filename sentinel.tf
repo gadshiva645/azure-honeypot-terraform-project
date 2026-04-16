@@ -172,12 +172,6 @@ resource "azurerm_sentinel_alert_rule_scheduled" "sentinel-rule-scheduled" {
   QUERY
 }
 
-
-
-
-
-# add terraform code to github
-
 # connect to azure build terraform resources 
 
 
