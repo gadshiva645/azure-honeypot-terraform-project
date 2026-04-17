@@ -1,6 +1,12 @@
+resource "random_string" "storage_name" {
+  length  = 8
+  upper   = false
+  special = false
+}
+
 # azurerm_storage_account
 resource "azurerm_storage_account" "storage-account" {
-  name = "azure-storage-account"
+  name = "storage${random_string.storage_name.result}"
   resource_group_name = azurerm_resource_group.resource_group.name
   location = azurerm_resource_group.resource_group.location
   account_tier = "Standard"

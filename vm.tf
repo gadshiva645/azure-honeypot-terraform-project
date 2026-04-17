@@ -19,14 +19,15 @@ resource "azurerm_network_interface_security_group_association" "nsg_network_int
 
 resource "azurerm_windows_virtual_machine" "windows_vm" {
     name = "honeypot-vm"
-    resource_group_name = "azurerm_resource_group.resource_group.name"
-    location = "azurerm_resource_group.resource_group.location"
+    resource_group_name = azurerm_resource_group.resource_group.name
+    location = azurerm_resource_group.resource_group.location
     size = "Standard_D2ls_v5"
     admin_username = var.admin_username_honeypot
     admin_password  = azurerm_key_vault_secret.vm-admin-password.value
     priority = "Spot"
     eviction_policy = "Deallocate"
     max_bid_price = -1
+    patch_mode = "AutomaticByPlatform"
 
     network_interface_ids = [
         azurerm_network_interface.nic.id
@@ -37,7 +38,7 @@ resource "azurerm_windows_virtual_machine" "windows_vm" {
         storage_account_type = "Standard_LRS"
     }
 
-    source_image_id = {
+    source_image_reference {
         publisher = "MicrosoftWindowsServer"
         offer = "WindowsServer"
         sku = "2025-datacenter-azure-edition-smalldisk"

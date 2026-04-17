@@ -10,10 +10,10 @@ resource "azurerm_log_analytics_workspace" "workspace" {
 
 # azurerm_log_analytics_workspace_table
 resource "azurerm_log_analytics_workspace_table" "workspace-table" {
-  workspace_id = azurerm_log_analytics_workspace.workspace.workspace_id
+  workspace_id = azurerm_log_analytics_workspace.workspace.id
   name = "workspace-table"
   plan = "Basic"
-  retention_in_days = 8
+  retention_in_days = 30
 }
 
 resource "azurerm_sentinel_log_analytics_workspace_onboarding" "sentinel-workspace" {
@@ -130,7 +130,7 @@ resource "azurerm_network_watcher_flow_log" "network-watcher-flow-log" {
 
   traffic_analytics {
     enabled = true
-    workspace_id = azurerm_log_analytics_workspace.workspace.id
+    workspace_id = azurerm_log_analytics_workspace.workspace.workspace_id
     workspace_region = azurerm_log_analytics_workspace.workspace.location
     workspace_resource_id = azurerm_log_analytics_workspace.workspace.id
     interval_in_minutes = 10

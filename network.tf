@@ -92,7 +92,7 @@ resource "azurerm_public_ip" "pip" {
   name = "honeypot-pip"
   resource_group_name = azurerm_resource_group.resource_group.name
   location = azurerm_resource_group.resource_group.location
-  allocation_method = "static"
+  allocation_method = "Static"
 }
 
 #storage
